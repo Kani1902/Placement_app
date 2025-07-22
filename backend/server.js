@@ -10,7 +10,7 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: process.env.CLIENT_URL || 'https://placement-app-topaz.vercel.app',
+  origin: process.env.CLIENT_URL || 'https://localhost:3000',
   credentials: true
 }));
 app.use(express.json());
