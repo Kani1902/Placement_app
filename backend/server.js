@@ -6,22 +6,14 @@ const cors = require('cors');
 const session = require('express-session');
 const passport = require('./config/passport');
 
-const allowedOrigins = [
-  'https://placement-app-topaz.vercel.app',  // your Vercel frontend
-  'http://localhost:3000' // for local development
-];
+const app = express();
 
+// Middleware
 app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
+  origin: process.env.CLIENT_URL || 'https://placement-app-topaz.vercel.app',
   credentials: true
 }));
-
+app.use(express.json());
 
 // Session middleware (required for passport)
 app.use(session({
@@ -71,5 +63,4 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
-
 
