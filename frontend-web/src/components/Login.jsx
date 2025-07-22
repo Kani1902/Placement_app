@@ -49,7 +49,7 @@ const Login = () => {
     try {
       // First check if server is reachable
       try {
-        await axios.get('http://localhost:5000/api/test');
+        await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/test`);
       } catch (connectionError) {
         console.error('Server connection error:', connectionError);
         toast.error('Cannot connect to server. Please check if the backend is running.');
@@ -57,7 +57,7 @@ const Login = () => {
         return;
       }
 
-      const response = await axios.post('http://localhost:5000/api/auth/login', {
+    const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/auth/login`, {
         email: formData.email,
         password: formData.password
       });
@@ -102,7 +102,7 @@ const Login = () => {
       setLoading(true);
       console.log('Resending verification to:', resendEmail);
       
-      await axios.post('http://localhost:5000/api/auth/resend-verification', {
+     await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/auth/resend-verification`, {
         email: resendEmail
       });
       
