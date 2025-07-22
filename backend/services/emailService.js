@@ -65,7 +65,7 @@ initializeTransporter();
 
 const sendVerificationEmail = async (email, token) => {
   // Make sure we're using the correct frontend URL
-  const frontendUrl = process.env.CLIENT_URL || 'http://localhost:3000';
+  const frontendUrl = process.env.CLIENT_URL || 'https://placement-app-topaz.vercel.app';
   const verificationUrl = `${frontendUrl}/verify-email?token=${token}`;
   
   console.log('=== EMAIL SERVICE DEBUG ===');
